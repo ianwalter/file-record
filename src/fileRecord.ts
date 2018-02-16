@@ -42,6 +42,10 @@ export default class FileRecord {
 
   async file (filename: string) {
     try {
+      if (filename.includes('.vscode/record')) {
+        throw new Error('Not creating a file record of an existing file record')
+      }
+
       if (!this.recordPath) {
         const dir = await findParentDir('.vscode')
         if (dir) {
@@ -50,6 +54,7 @@ export default class FileRecord {
           throw new Error(`Couldn't determine the project root directory`)
         }
       }
+
       if (filename.includes(resolve(this.recordPath, '../..'))) {
         const relativePath = workspace.asRelativePath(filename)
         return resolve(this.recordPath, relativePath)
