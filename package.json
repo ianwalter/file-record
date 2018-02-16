@@ -11,15 +11,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "*"
   ],
   "main": "./out/extension",
-  "contributes": {
-    "commands": [{
-      "command": "extension.sayHello",
-      "title": "Hello World"
-    }]
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -27,12 +21,44 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
+  "dependencies": {
+    "find-parent-dir": "^0.3.0",
+    "luxon": "^0.5.0",
+    "mkdirp": "^0.5.1",
+    "pify": "^3.0.0"
+  },
   "devDependencies": {
-    "@types/mocha": "^2.2.42",
     "@types/node": "^7.0.43",
+    "jest": "^22.3.0",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.6.1",
     "vscode": "^1.1.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/file-record.git"
+  },
+  "keywords": [
+    "vscode",
+    "vs code",
+    "visual studio code",
+    "history",
+    "file",
+    "record",
+    "local",
+    "save",
+    "copy",
+    "backup"
+  ],
+  "author": {
+    "name": "Ian Walter",
+    "email": "public@iankwalter.com",
+    "url": "https://iankwalter.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ianwalter/file-record/issues"
+  },
+  "homepage": "https://github.com/ianwalter/file-record#readme"
 }
