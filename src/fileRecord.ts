@@ -71,11 +71,11 @@ export default class FileRecord {
     }
   }
 
-  addToBatch (document: TextDocument) {
+  addToQueue (document: TextDocument) {
     this.batch.push(document)
   }
 
-  async handleBatch () {
+  async processQueue () {
     const batch = this.batch.map(doc => this.saveNewVersion(doc))
     const results = await promiseComplete(batch)
     results.filter(r => r).forEach(error => console.error(error))

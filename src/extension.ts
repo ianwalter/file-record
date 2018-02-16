@@ -5,14 +5,14 @@ export function activate (context: ExtensionContext) {
   const record = new FileRecord()
 
   //
-  setInterval(record.handleBatch, record.saveDelay)
+  setInterval(record.processQueue, record.saveDelay)
 
   workspace.onDidSaveTextDocument(async (document: TextDocument) => {
     try {
       // If the document version has increased, save the new version.
       const version = await record.getLatestVersion(document.fileName)
       if (document.version > version) {
-        record.addToBatch(document)
+        record.addToQueue(document)
       }
     } catch (error) {
       console.error(error)

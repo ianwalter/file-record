@@ -56,5 +56,13 @@
   "bugs": {
     "url": "https://github.com/ianwalter/file-record/issues"
   },
-  "homepage": "https://github.com/ianwalter/file-record#readme"
+  "homepage": "https://github.com/ianwalter/file-record#readme",
+  "jest": {
+    "automock": true,
+    "moduleFileExtensions": ["ts", "js", "json"],
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/scripts/preprocessor.js"
+    },
+    "testRegex": "tests/.*\\.ts$"
+  }
 }
