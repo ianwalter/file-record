@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as pify from 'pify'
 import * as fpd from 'find-parent-dir'
+import * as promiseComplete from 'promise-complete'
 
 const mkdir = pify(mkdirp)
 const writeFile = pify(fs.writeFile)
@@ -12,16 +13,20 @@ const readDir = pify(fs.readdir)
 const findParentDir = pify(fpd)
 
 export default class FileRecord {
-  recordPath: any
+  recordPath: string
+  saveDelay: number
+  batch: Array<TextDocument>
 
   constructor () {
-    const { recordPath } = workspace.getConfiguration('file-record')
+    const { recordPath, saveDelay } = workspace.getConfiguration('file-record')
     if (recordPath) {
       this.recordPath = resolve(recordPath)
     } else if (workspace.workspaceFolders) {
       const { fsPath } = workspace.workspaceFolders[0].uri
       this.recordPath = resolve(fsPath, '.vscode/record')
     }
+    this.saveDelay = saveDelay || 1000
+    this.batch = []
   }
 
   async getLatestVersion (filename: string) {
@@ -64,6 +69,16 @@ export default class FileRecord {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  addToBatch (document: TextDocument) {
+    this.batch.push(document)
+  }
+
+  async handleBatch () {
+    const batch = this.batch.map(doc => this.saveNewVersion(doc))
+    const results = await promiseComplete(batch)
+    results.filter(r => r).forEach(error => console.error(error))
   }
 
   async saveNewVersion (document: TextDocument) {
