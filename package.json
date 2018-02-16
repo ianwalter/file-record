@@ -40,14 +40,9 @@
     "url": "git+https://github.com/ianwalter/file-record.git"
   },
   "keywords": [
-    "vscode",
-    "vs code",
-    "visual studio code",
     "history",
     "file",
-    "record",
     "local",
-    "save",
     "copy",
     "backup"
   ],
