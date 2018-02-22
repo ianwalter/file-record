@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as pify from 'pify'
 import * as fpd from 'find-parent-dir'
+import * as mkdirpSync from 'mkdirpsync'
 
 const mkdir = pify(mkdirp)
 const writeFile = pify(fs.writeFile)
@@ -21,6 +22,14 @@ export default class FileRecord {
     } else if (workspace.workspaceFolders) {
       const { fsPath } = workspace.workspaceFolders[0].uri
       this.recordPath = resolve(fsPath, '.vscode/record')
+    }
+
+    if (this.recordPath) {
+      mkdirpSync(this.recordPath)
+      const gitignore = resolve(this.recordPath, '.gitignore')
+      if (!fs.existsSync(gitignore)) {
+        writeFile(gitignore, '*')
+      }
     }
   }
 
