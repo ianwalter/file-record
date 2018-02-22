@@ -2,7 +2,7 @@
   "name": "file-record",
   "displayName": "File Record",
   "description": "Automatically keep a local record of file changes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "ianwalter",
   "engines": {
     "vscode": "^1.20.0"
