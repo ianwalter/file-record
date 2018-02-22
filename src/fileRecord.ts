@@ -1,5 +1,5 @@
 import { workspace, TextDocument } from 'vscode'
-import { resolve, extname } from 'path'
+import { resolve, extname, sep } from 'path'
 import { DateTime } from 'luxon'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
@@ -57,7 +57,13 @@ export default class FileRecord {
 
       if (filename.includes(resolve(this.recordPath, '../..'))) {
         const relativePath = workspace.asRelativePath(filename)
-        return resolve(this.recordPath, relativePath)
+
+        // Add .record to each path segment so that the directories that contain
+        // the records don't match the original filename exactly.
+        // https://github.com/ianwalter/file-record/issues/2
+        const pathParts = relativePath.split(sep).map(p => p + '.record')
+
+        return resolve(this.recordPath, pathParts.join(sep))
       } else {
         throw new Error(`Filename doesn't match workspace path`)
       }
