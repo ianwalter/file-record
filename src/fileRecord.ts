@@ -1,6 +1,6 @@
 import { workspace, TextDocument } from 'vscode'
 import { resolve, extname, sep } from 'path'
-import { DateTime } from 'luxon'
+import * as format from 'date-fns/format'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as pify from 'pify'
@@ -84,7 +84,7 @@ export default class FileRecord {
   async saveNewVersion (document: TextDocument) {
     const dirPath = await this.file(document.fileName)
     const ext = extname(document.fileName)
-    const date = DateTime.local().toLocaleString(DateTime.DATETIME_MED)
+    const date = format(new Date(), 'M-D-YYYY h-m-sa')
     const filename = `${date}.${document.version}${ext}`
     if (dirPath) {
       //
