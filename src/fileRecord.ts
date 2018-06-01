@@ -84,7 +84,7 @@ export default class FileRecord {
   async saveNewVersion (document: TextDocument) {
     const dirPath = await this.file(document.fileName)
     const ext = extname(document.fileName)
-    const date = format(new Date(), 'M-D-YYYY h-m-sa')
+    const date = format(new Date(), 'MM-DD-YYYY hh-mm-ssa')
     const filename = `${date}.${document.version}${ext}`
     if (dirPath) {
       //
