@@ -44,7 +44,7 @@
     "find-parent-dir": "^0.3.0",
     "mkdirp": "^0.5.1",
     "mkdirpsync": "^0.1.0",
-    "pify": "^3.0.0"
+    "pify": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.43",
