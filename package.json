@@ -48,7 +48,7 @@
     "pify": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^7.0.43",
+    "@types/node": "^10.12.19",
     "jest": "^22.3.0",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
