@@ -4370,10 +4370,10 @@ vinyl@^2.0.0, vinyl@^2.0.1, vinyl@^2.0.2:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-vscode@^1.1.26:
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/vscode/-/vscode-1.1.26.tgz#33d0feacd8ab5f78a0c4672235376c70cdea494b"
-  integrity sha512-z1Nf5J38gjUFbuDCbJHPN6OJ//5EG+e/yHlh6ERxj/U9B2Qc3aiHaFr38/fee/GGnxvRw/XegLMOG+UJwKi/Qg==
+vscode@^1.1.29:
+  version "1.1.29"
+  resolved "https://registry.yarnpkg.com/vscode/-/vscode-1.1.29.tgz#bef148f5eb88b966e425b7fa4287ff4b8b04e017"
+  integrity sha512-E6hzqGtCD65BnBxdZzSIi8FPCM4seEEK/bbTeYdJntg+4D5R6GLbdYFySE9DNTtMJF4iB9UGoucKU/p8Guts1g==
   dependencies:
     glob "^7.1.2"
     gulp-chmod "^2.0.0"
